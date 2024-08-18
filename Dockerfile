@@ -17,12 +17,19 @@ RUN apt-get update \
     && apt-get install -y \
         gcc \
         libpq-dev \
+        redis-server \
     && rm -rf /var/lib/apt/lists/*
+    
 
 # Install dependencies
 # RUN pip install --upgrade pip
 
 RUN pip install -r requirements.txt
+
+
+RUN service redis-server start
+#   RUN /etc/init.d/redis-server restart
+# RUN celery -A pro worker -l info
 
 # Copy the Django project
 COPY pro /app

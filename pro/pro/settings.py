@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'import_export',
     'django_celery_beat',
+    'drf_yasg',
     'api',
 ]
 
@@ -161,13 +162,20 @@ LERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
 CELERY_ACCEPT_CONTENT = ['json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
+
+CELERY_TASK_TRACK_STARTED = True
+CELERY_TASK_ALWAYS_EAGER = False 
+
 # broker_url = 'redis://redis:6359/0'
 
-CELERY_TIMEZONE = "Africa/Cairo"
+# CELERY_TIMEZONE = "Africa/Cairo"
 
 
 
 
 
-
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 15,  
+}
 

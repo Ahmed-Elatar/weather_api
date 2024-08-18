@@ -11,6 +11,8 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: Ahmed2000-
 
+  
+
   web:
     build: .
     command: bash -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
@@ -19,6 +21,7 @@ services:
     ports:
       - "8000:8000"
     depends_on:
+      # - redis
       - db
     environment:
       - DATABASE_NAME=pro_1
@@ -27,17 +30,21 @@ services:
       - DATABASE_HOST=db
       - DATABASE_PORT=5432
 
-  redis:
-    image: redis:latest
-    restart: always
-    expose:
-      - 6389
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
-    network_mode: host
-    volumes:
-      - ./redis.conf:/usr/local/etc/redis/redis.conf
-    command: [ "redis-server", "/usr/local/etc/redis/redis.conf" ]
+
+  # celery:
+  #   build: .
+  #   command: celery -A pro worker -l info
+  #   volumes:
+  #     - ./pro:/app  
+  #   depends_on:
+  #     - db
+  #     - redis
+
+  # redis:
+  #   image: "redis:latest"
+  #   ports:
+  #     - "6389:6389"
+
 
 volumes:
   postgres_data:

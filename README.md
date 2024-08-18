@@ -3,7 +3,7 @@
 
 This project is a Django-based application that retrieves and stores current weather data <br/>
 for multiple cities using a weather API. <br/>
-The application uses Celery and Redis for background task processing.
+The application uses Celery and Redis to process background tasks.
 
 
 
@@ -25,6 +25,7 @@ The application uses Celery and Redis for background task processing.
 - Stores weather data in a PostgreSQL database.
 - Uses Celery and Redis for asynchronous task processing.
 - Dockerized setup for easy deployment.
+- Using swagger for API testing
 
 <br/><br/>
 
@@ -104,6 +105,8 @@ for full access to weather data, periodic tasks, etc...
 - `http://0.0.0.0:8000/`
 
 - `http://0.0.0.0:8000/{id}`
+
+-  `http://0.0.0.0:8000/swagger`
 
 
 

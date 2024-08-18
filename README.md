@@ -15,6 +15,7 @@ The application uses Celery and Redis for background task processing.
 - [Installation](#installation)
 - [Usage](#usage)
 - [Functions and Classes](#functions-and-classes)
+- [URLs Map](#urls-map)
 - [Installation Notes](#installation-notes)
 
 <br/><br/>
@@ -94,6 +95,17 @@ for full access to weather data, periodic tasks, etc...
       
 5. class `WeatherDetailView(RetrieveUpdateDestroyAPIView)` : <br/>
     - this class uses the Generic Views to retrieve a single record of weather data or update a record or delete a record.
+
+<br/><br/>
+##  URLs Map
+
+- `http://0.0.0.0:8000/admin`
+
+- `http://0.0.0.0:8000/`
+
+- `http://0.0.0.0:8000/{id}`
+
+
 
 
 <br/><br/>

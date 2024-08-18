@@ -37,7 +37,6 @@ dockerized for easy deployment , and uses swagger for API Testing
 Before you begin, ensure you have the following installed on your system:
 
 - [Python 3.8+](https://www.python.org/downloads)
-- [PostgreSQL](https://www.postgresql.org/download/)
 - [Docker](https://www.docker.com/get-started/)
 - [Docker Compose](https://docs.docker.com/compose/install/)
 
@@ -55,18 +54,13 @@ Before you begin, ensure you have the following installed on your system:
     ```bash
     sudo docker-compose build
     ```
-
-3. Apply the Django migrations:
-    ```bash
-    sudo docker-compose run web python manage.py migrate
-    ```
-
-4. Create a superuser to access the Django admin:
+    
+3. Create a superuser to access the Django admin:
     ```bash
     sudo docker-compose run web python manage.py createsuperuser
     ```
 
-5. Start the Docker containers:
+4. Start the Docker containers:
     ```bash
     sudo docker-compose up
     ```

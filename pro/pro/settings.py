@@ -91,7 +91,7 @@ WSGI_APPLICATION = 'pro.wsgi.application'
 #         'ENGINE': 'django.db.backends.postgresql_psycopg2',
 #         'NAME': 'pro_1',
 #         'USER': 'postgres',
-#         'PASSWORD': 'Ahmed2000-',
+#         'PASSWORD': 'mypassword',
 #         'HOST': 'localhost', 
 #         'PORT': '5432',
 #     }
@@ -101,7 +101,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': os.getenv('DATABASE_NAME', 'pro_1'),
         'USER': os.getenv('DATABASE_USER', 'postgres'),
-        'PASSWORD': os.getenv('DATABASE_PASSWORD', 'Ahmed2000-'),
+        'PASSWORD': os.getenv('DATABASE_PASSWORD', 'mypassword'),
         'HOST': os.getenv('DATABASE_HOST', 'db'),
         'PORT': os.getenv('DATABASE_PORT', '5432'),
     }

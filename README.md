@@ -14,8 +14,8 @@ The application uses Celery and Redis for background task processing.
 - [Prerequisites](#prerequisites)
 - [Installation](#installation)
 - [Usage](#usage)
-- [Celery Task: get_cities_weather](#celery-task-get_cities_weather)
-- [Docker Setup](#docker-setup)
+- [Functions and Classes](#functions-and-classes)
+- [Installation Notes](#installation-notes)
 - [Contributing](#contributing)
 - [License](#license)
 
@@ -67,26 +67,35 @@ Before you begin, ensure you have the following installed on your system:
 
 ## Usage
 
-Once the application is up and running, you can access it in your web browser at `http://localhost:8000`. 
+Once the application is up and running, you can access it in your web browser at `http://0.0.0.0:8000/`. <br/> 
 
 ### Access the Django Admin
 
-Go to `http://localhost:8000/admin` and log in using the superuser credentials you created during the setup.
+Go to `http://0.0.0.0:8000/admin` and log in using the superuser credentials you created during the setup. <br/>
+for full access to weather data, periodic tasks, etc...
 
-### Fetching Weather Data
 
-The `get_cities_weather` Celery task fetches weather data for a set of cities and stores it in the database. This task runs every 30 minutes and processes 10 cities per run.
+## Functions-and-Classes
 
-## Celery Task: `get_cities_weather`
 
-The `get_cities_weather` task is responsible for retrieving and saving weather data for a list of cities. It works as follows:
+1. def `get_weather(loc)` : <br/>
+    - this function takes Parameter (str: city name) and returns weather data for this city in JSON format using WeatherAPI site by passing API-Token 
+2. def `nested_to_flastten(nested_data)` : <br/>
+    - this function takes Parameter (nested_data: dict(dict) and returns flat_data (in single dict) in JSON format  
+3. def `get_cities_weather()` : <br/>
+    - It's a celery task used to call `get_weather(loc)` every 30 seconds and save the returned data in Django models
+ 
+4. class `WeatherListView(ListCreateAPIView)` : <br/>
+    - this class uses the Generic Views to retrieve a list of weather data or create a new record
+      
+5. class `WeatherDetailView(RetrieveUpdateDestroyAPIView)` : <br/>
+    - this class uses the Generic Views to retrieve a single record of weather data or update a record or delete a record.
 
-1. The task fetches the current weather data for a list of cities using an external weather API.
-2. The fetched data is flattened and stored in the PostgreSQL database.
-3. The task processes 10 cities in each run and automatically cycles through the list of cities.
 
-Example usage:
-```python
-from .tasks import get_cities_weather
 
-get_cities_weather.delay()
+## Installation Notes
+
+- Retrieves current weather data for multiple cities.
+- Stores weather data in a PostgreSQL database.
+- Uses Celery and Redis for asynchronous task processing.
+- Dockerized setup for easy deployment.

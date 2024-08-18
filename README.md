@@ -16,15 +16,18 @@ The application uses Celery and Redis for background task processing.
 - [Usage](#usage)
 - [Functions and Classes](#functions-and-classes)
 - [Installation Notes](#installation-notes)
-- [Contributing](#contributing)
-- [License](#license)
 
+<br/><br/>
 ## Features
 
 - Retrieves current weather data for multiple cities.
 - Stores weather data in a PostgreSQL database.
 - Uses Celery and Redis for asynchronous task processing.
 - Dockerized setup for easy deployment.
+
+<br/><br/>
+
+
 
 ## Prerequisites
 
@@ -35,7 +38,7 @@ Before you begin, ensure you have the following installed on your system:
 - [Docker](https://www.docker.com/get-started/)
 - [Docker Compose](https://docs.docker.com/compose/install/)
 
-
+<br/><br/>
 
 ## Installation
 
@@ -65,6 +68,7 @@ Before you begin, ensure you have the following installed on your system:
     sudo docker-compose up
     ```
 
+<br/><br/>
 ## Usage
 
 Once the application is up and running, you can access it in your web browser at `http://0.0.0.0:8000/`. <br/> 
@@ -74,7 +78,7 @@ Once the application is up and running, you can access it in your web browser at
 Go to `http://0.0.0.0:8000/admin` and log in using the superuser credentials you created during the setup. <br/>
 for full access to weather data, periodic tasks, etc...
 
-
+<br/><br/>
 ## Functions-and-Classes
 
 
@@ -92,10 +96,10 @@ for full access to weather data, periodic tasks, etc...
     - this class uses the Generic Views to retrieve a single record of weather data or update a record or delete a record.
 
 
-
+<br/><br/>
 ## Installation Notes
 
-- Retrieves current weather data for multiple cities.
-- Stores weather data in a PostgreSQL database.
-- Uses Celery and Redis for asynchronous task processing.
-- Dockerized setup for easy deployment.
+- edit the .env file :
+      - Add your Postgres database Name, User, and password
+- And do the same step in the docker-compose file
+   

@@ -2,8 +2,9 @@
 
 
 This project is a Django-based application that retrieves and stores current weather data <br/>
-for multiple cities using a weather API. <br/>
-The application uses Celery and Redis to process background tasks.
+for multiple cities using a [weatherAPI](https://www.weatherapi.com/) for getting current weather <br/>
+The application uses Celery and Redis to process background tasks,<br/>
+dockerized for easy deployment , and uses swagger for API Testing 
 
 
 

@@ -41,8 +41,8 @@ Before you begin, ensure you have the following installed on your system:
 
 1. Clone the repository:
     ```bash
-    git clone https://github.com/Ahmed-Elatar/weather-data-aggregator.git
-    cd weather-data-aggregator
+    git clone https://github.com/Ahmed-Elatar/weather_api.git
+    cd weather_api
     ```
 
 2. Build the Docker containers:

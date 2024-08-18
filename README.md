@@ -109,7 +109,7 @@ for full access to weather data, periodic tasks, etc...
 <br/><br/>
 ## Installation Notes
 
-- edit the .env file :
+- edit the .env file : <br/>
       - Add your Postgres database Name, User, and password
 - And do the same step in the docker-compose file
    

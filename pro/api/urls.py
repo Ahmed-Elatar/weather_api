@@ -27,11 +27,10 @@ urlpatterns = [
 
 
 
-    path('',index , name= "index"),
 
-    path('weather/', WeatherListView.as_view(), name='weather_list'),
+    path('', WeatherListView.as_view(), name='weather_list'),
 
-    path('weather/<int:pk>/', WeatherDetailView.as_view(), name='weather_detail'),
+    path('<int:pk>/', WeatherDetailView.as_view(), name='weather_detail'),
 
 
 ]

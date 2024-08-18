@@ -86,22 +86,12 @@ WSGI_APPLICATION = 'pro.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': 'pro_1',
-#         'USER': 'postgres',
-#         'PASSWORD': 'mypassword',
-#         'HOST': 'localhost', 
-#         'PORT': '5432',
-#     }
-# }
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': os.getenv('DATABASE_NAME', 'pro_1'),
         'USER': os.getenv('DATABASE_USER', 'postgres'),
-        'PASSWORD': os.getenv('DATABASE_PASSWORD', 'mypassword'),
+        'PASSWORD': os.getenv('DATABASE_PASSWORD', '********'),
         'HOST': os.getenv('DATABASE_HOST', 'db'),
         'PORT': os.getenv('DATABASE_PORT', '5432'),
     }
@@ -166,9 +156,7 @@ CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TASK_TRACK_STARTED = True
 CELERY_TASK_ALWAYS_EAGER = False 
 
-# broker_url = 'redis://redis:6359/0'
-
-# CELERY_TIMEZONE = "Africa/Cairo"
+CELERY_TIMEZONE = "Africa/Cairo"
 
 
 

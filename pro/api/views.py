@@ -23,15 +23,6 @@ from rest_framework.pagination import PageNumberPagination
 
 
 
-def index(request):
-    
-
-    return HttpResponse("HOME.....")
-
-
-
-
-
 
 
 

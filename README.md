@@ -80,7 +80,40 @@ for full access to weather data, periodic tasks, etc...
 
 
 1. def `get_weather(loc)` : <br/>
-    - this function takes Parameter (str: city name) and returns weather data for this city in JSON format using WeatherAPI site by passing API-Token 
+     
+    Fetch and process current weather data for a specific location.
+    
+    This function retrieves the current weather data for a given location using the WeatherAPI
+    and uses nested_to_flastten() function to flattens nested JSON data into a single dictionary. 
+    It also extracts and reformats the date and time from the weather data.
+    
+    Parameters:
+        loc (str): The location for which to fetch weather data. 
+                    Example: 'Cairo'
+    
+    Example:
+        weather_data = get_weather('Alexandria')
+    
+    Returns:
+        dict: A dictionary containing flattened weather data with keys such as 'temp_c', 
+                'humidity', 'wind_kph', 'pressure_mb', 'date', 'time', etc.
+    
+                Example:
+                {
+                    "temp_c": 27.3,
+                    "humidity": 78,
+                    "wind_kph": 13.7,
+                    "pressure_mb": 1009.0,
+                    "date": datetime.date(2024, 8, 11),
+                    "time": datetime.time(2, 15),
+                    ...
+                }
+    
+    
+    Notes:
+        - The function uses an API-Token key to access the WeatherAPI service. Make sure your key is valid.
+
+ 
 2. def `nested_to_flastten(nested_data)` : <br/>
     - this function takes Parameter (nested_data: dict(dict) and returns flat_data (in single dict) in JSON format  
 3. def `get_cities_weather()` : <br/>

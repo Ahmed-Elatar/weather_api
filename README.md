@@ -113,17 +113,110 @@ for full access to weather data, periodic tasks, etc...
     Notes:
         - The function uses an API-Token key to access the WeatherAPI service. Make sure your key is valid.
 
+
+
  
 2. def `nested_to_flastten(nested_data)` : <br/>
-    - this function takes Parameter (nested_data: dict(dict) and returns flat_data (in single dict) in JSON format  
-3. def `get_cities_weather()` : <br/>
-    - It's a celery task used to call `get_weather(loc)` every 30 seconds and save the returned data in Django models
+    This function flattens nested JSON data into a single dictionary.
+
+    Parameters:
+        nested_data ( dict(dict) ): The location for which to fetch weather data. 
+                Example: 'nested_data'
+
+                   nested_data={
+                                "location": {
+                                    "name": "Austin",
+                                    "region": "Texas",
+                                    "country": "United States of America",
+                                    "lat": 30.27,
+                                    "lon": -97.74,
+                                    "tz_id": "America/Chicago",
+                                    "localtime_epoch": 1723631062,
+                                    "localtime": "2024-08-14 05:24"
+                                },
+                                "current": {
+                                    "last_updated": "2024-08-14 05:15",
+                                    "temp_c": 26.7,
+                                    "wind_kph": 6.8,
+                                    "wind_dir": "S",
+                                    "pressure_mb": 1017,
+                                    "cloud": 25
+                                }
+                            }
+
+    Example:
+        weather_data = nested_to_flastten(nested_data)
+
+    Returns:
+        dict: A dictionary containing flattened weather data with keys such as 'temp_c', 
+              'name', 'wind_kph', 'pressure_mb', 'date', 'time', etc.
+
+              Example:
+                      {
+                        
+                        "name": "Austin",
+                        "region": "Texas",
+                        "country": "United States of America",
+                        "lat": 30.27,
+                        "lon": -97.74,
+                        "tz_id": "America/Chicago",
+                        "date": "2024-08-13",
+                        "time": "06:45:00",
+                        "temp_c": 26.8,
+                        "wind_kph": 10.4,
+                        "wind_dir": "S",
+                        "pressure_mb": 1015.0,
+                        "cloud": 54
+                    }
+
+
+
+
+4. def `get_cities_weather()` : <br/>
+    - get_cities_weather Background Task
+    
+    This Celery task call get_weather() function from views and send the parameter ( city name ) to get city weather data
+    The function uses a global counter (`cnt`) to keep track of which cities have been processed 
+    note :
+        - he task processes 10 cities per run ( from the cities list )
+        
+    Then save the data returned from  get_weather() in database using  WeatherDataSerializer
+    
+    
+    
+    Parameters:
+        None
+    
+    Returns:
+        None
+
  
-4. class `WeatherListView(ListCreateAPIView)` : <br/>
-    - this class uses the Generic Views to retrieve a list of weather data or create a new record
+5. class `WeatherListView(ListCreateAPIView)` : <br/>
+
+    - API view to retrieve a list of weather data or create a new record.
+    This view have 2 methods:
+    
+    - GET : Returns a list of all weather data records .
+    - POST : Allows clients to create a new record in JSON format .
+    
+    Attributes:
+        queryset: A Django QuerySet that retrieves all WeatherData objects from the database.
+        serializer_class: The serializer class which used to convert WeatherData instances to and from JSON.
+
       
-5. class `WeatherDetailView(RetrieveUpdateDestroyAPIView)` : <br/>
-    - this class uses the Generic Views to retrieve a single record of weather data or update a record or delete a record.
+6. class `WeatherDetailView(RetrieveUpdateDestroyAPIView)` : <br/>
+    
+    -  API view to retrieve a single record of weather data or update a record or delete a record.
+    This view have 3 methods:
+
+    - GET : Retrieves a specific weather data record by its primary key (ID).
+    - PATCH : Partially or fully updates a specific weather data record.
+    - DELETE : Deletes a specific weather data record.
+
+    Attributes:
+        queryset: A Django QuerySet that retrieves all WeatherData objects from the database.
+        serializer_class: The serializer class which used to convert WeatherData instances to and from JSON.
+
 
 <br/><br/>
 ##  URLs Map
